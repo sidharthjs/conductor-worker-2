@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"log"
 	"os"
 	"strconv"
 	"time"
@@ -11,6 +9,7 @@ import (
 	"github.com/conductor-sdk/conductor-go/sdk/settings"
 	"github.com/conductor-sdk/conductor-go/sdk/worker"
 	"github.com/sidharthjs/conductor-worker-2/workers"
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -39,6 +38,6 @@ func main() {
 	tr := worker.NewTaskRunnerWithApiClient(apiClient)
 	// tr.StartWorker("upload_file", workers.UploadTask, batchSize, 5*time.Second)
 	tr.StartWorker("write_to_db", workers.WriteToDBTask, batchSize, 5*time.Second)
-	fmt.Println("started workers")
+	log.Info("started workers")
 	tr.WaitWorkers()
 }
