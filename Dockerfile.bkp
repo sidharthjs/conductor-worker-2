@@ -1,0 +1,9 @@
+FROM golang:latest as builder
+COPY go.mod go.sum main.go /worker/
+COPY workers/ /worker/workers/
+WORKDIR /worker
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
+
+FROM alpine:latest
+COPY --from=builder /worker/conductor-worker-2 /app/conductor-worker-2
+CMD /app/conductor-worker-2

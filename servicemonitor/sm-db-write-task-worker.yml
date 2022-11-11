@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    grafana-agent-default: "true"
+  name: sm-db-write-task-worker
+  namespace: conductor
+spec:
+  endpoints:
+  - path: /metrics
+    port: metrics
+  selector:
+    matchLabels:
+      app: worker-task-write-to-db

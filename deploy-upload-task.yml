@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: worker-task-upload-file
-        image: sidharthjs/worker-task-upload-file:v1.0.13
+        # image: sidharthjs/worker-task-upload-file:v1.0.13
+        image: sidharthjs/worker-task-upload-file:v2.0.9
         env:
         - name: CONDUCTOR_SERVER
           value: "http://conductor-server:8080/api"
